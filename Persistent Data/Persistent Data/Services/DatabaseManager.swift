@@ -11,8 +11,10 @@ import CoreData
 class DatabaseManager {
     static let shared = DatabaseManager()
     
+    var isRunningTransactions = false
+    
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "learn-swift-winnipeg")
+        let container = NSPersistentContainer(name: "database")
         container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
@@ -41,5 +43,26 @@ extension DatabaseManager {
     
     func delete(_ object: NSManagedObject) {
         persistentContainer.viewContext.delete(object)
+    }
+}
+
+// MARK: - Simple datas
+
+extension DatabaseManager {
+    func bulkGeneration() {
+        DispatchQueue.global(qos: .background).async {
+            while self.isRunningTransactions {
+                let entity = NSEntityDescription.insertNewObject(forEntityName: Simple.entityName, into: self.persistentContainer.viewContext) as! Simple
+                entity.guid = UUID().uuidString
+                entity.createdAt = Date()
+                
+                do {
+                    NotificationCenter.default.post(name: NSNotification.Name("transaction-performed"), object: nil)
+                    try self.saveContext()
+                } catch {
+                    print("Could not save context after bulk insert: \(error)")
+                }
+            }
+        }
     }
 }
