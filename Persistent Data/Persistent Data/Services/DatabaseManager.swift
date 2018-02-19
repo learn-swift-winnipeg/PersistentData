@@ -33,7 +33,7 @@ extension DatabaseManager {
     
     /// Errors should be handled out of the database manager
     
-    func saveContext() throws {
+    @objc func saveContext() throws {
         let context = persistentContainer.viewContext
         
         if context.hasChanges { try context.save() }
@@ -50,17 +50,30 @@ extension DatabaseManager {
 
 extension DatabaseManager {
     func bulkGeneration() {
-        DispatchQueue.global(qos: .background).async {
+        
+        let privateMoc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        privateMoc.parent = self.persistentContainer.viewContext
+        
+        privateMoc.perform {
             while self.isRunningTransactions {
-                let entity = NSEntityDescription.insertNewObject(forEntityName: Simple.entityName, into: self.persistentContainer.viewContext) as! Simple
+                let entity = NSEntityDescription.insertNewObject(forEntityName: Simple.entityName, into: privateMoc) as! Simple
                 entity.guid = UUID().uuidString
                 entity.createdAt = Date()
                 
                 do {
+                    try privateMoc.save()
                     NotificationCenter.default.post(name: NSNotification.Name("transaction-performed"), object: nil)
-                    try self.saveContext()
+                    
+                    self.persistentContainer.viewContext.performAndWait {
+                        do {
+                            try self.saveContext()
+                        } catch {
+                            print("Could not save main context while bullk inserting: \(error)")
+                        }
+                    }
+                    
                 } catch {
-                    print("Could not save context after bulk insert: \(error)")
+                    print("Could not save private context while bulk inserting: \(error)")
                 }
             }
         }
