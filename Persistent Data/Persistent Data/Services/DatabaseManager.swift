@@ -46,7 +46,7 @@ extension DatabaseManager {
     }
 }
 
-// MARK: - Simple datas
+// MARK: - Simple data
 
 extension DatabaseManager {
     func bulkGeneration() {

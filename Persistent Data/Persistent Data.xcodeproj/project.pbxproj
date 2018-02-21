@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D1330D2203BE1EE0018FC69 /* database.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D1330D1203BE1EE0018FC69 /* database.plist */; };
+		5D1330D4203D16FD0018FC69 /* DocumentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1330D3203D16FD0018FC69 /* DocumentManager.swift */; };
+		5D1330D6203D24D80018FC69 /* HomePlistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1330D5203D24D80018FC69 /* HomePlistVC.swift */; };
 		5D5D088E202820A9008A441B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5D088D202820A9008A441B /* AppDelegate.swift */; };
 		5D5D0893202820A9008A441B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D5D0891202820A9008A441B /* Main.storyboard */; };
 		5D5D0895202820A9008A441B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D5D0894202820A9008A441B /* Assets.xcassets */; };
@@ -19,6 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D1330D1203BE1EE0018FC69 /* database.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = database.plist; sourceTree = "<group>"; };
+		5D1330D3203D16FD0018FC69 /* DocumentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentManager.swift; sourceTree = "<group>"; };
+		5D1330D5203D24D80018FC69 /* HomePlistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePlistVC.swift; sourceTree = "<group>"; };
 		5D5D088A202820A9008A441B /* Persistent Data.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Persistent Data.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D5D088D202820A9008A441B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D5D0892202820A9008A441B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -79,6 +85,7 @@
 			children = (
 				5D5D08A82029687F008A441B /* database.xcdatamodeld */,
 				5D5D08AB202968F7008A441B /* SimpleData.swift */,
+				5D1330D1203BE1EE0018FC69 /* database.plist */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -96,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				5D5D08AD20296B99008A441B /* HomeCoreDataVC.swift */,
+				5D1330D5203D24D80018FC69 /* HomePlistVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -104,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				5D5D08A320282182008A441B /* DatabaseManager.swift */,
+				5D1330D3203D16FD0018FC69 /* DocumentManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -168,6 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D5D0898202820A9008A441B /* LaunchScreen.storyboard in Resources */,
+				5D1330D2203BE1EE0018FC69 /* database.plist in Resources */,
 				5D5D0895202820A9008A441B /* Assets.xcassets in Resources */,
 				5D5D0893202820A9008A441B /* Main.storyboard in Resources */,
 			);
@@ -181,6 +191,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D9BE23C2030B2CA00913769 /* Configuration.swift in Sources */,
+				5D1330D4203D16FD0018FC69 /* DocumentManager.swift in Sources */,
+				5D1330D6203D24D80018FC69 /* HomePlistVC.swift in Sources */,
 				5D5D08AA2029687F008A441B /* database.xcdatamodeld in Sources */,
 				5D5D088E202820A9008A441B /* AppDelegate.swift in Sources */,
 				5D5D08AE20296B99008A441B /* HomeCoreDataVC.swift in Sources */,
